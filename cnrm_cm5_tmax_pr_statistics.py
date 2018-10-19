@@ -39,7 +39,7 @@ def annual_pr(exp, strt_yr, end_yr):
 
 	all_data = xr.open_mfdataset(src_dir+'pr_day_'+gcm+'_'+exp+'_r1i1p1_????.nc')
 	sliced_data = all_data.sel(TIME=slice(str(strt_yr), str(end_yr)))
-	annual_mean = sliced_data.resample(TIME='1AS').mean('TIME')
+	clim_annual_mean = sliced_data.resample(TIME='1AS').mean('TIME').mean('TIME')
 	
 	if exp == 'historical':
 		out_pfx = 'hist'
@@ -50,7 +50,7 @@ def annual_pr(exp, strt_yr, end_yr):
 	if os.path.exists(dest_fl):
 		os.remove(dest_fl)
 	
-	annual_mean.to_netcdf(dest_fl)
+	clim_annual_mean.to_netcdf(dest_fl)
 	print(dest_fl)
 
 
