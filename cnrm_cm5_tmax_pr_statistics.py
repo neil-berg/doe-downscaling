@@ -6,8 +6,14 @@ Neil Berg, October 2017
 
 import os
 import xarray as xr
+import numpy as np
+import cartopy 
+
 
 gcm = 'CNRM-CM5'
+
+def model_check():
+	print(gcm)
 
 def april_tmax(exp, strt_yr, end_yr):
 	""" Climatoligical April Tmax (warmest day during April) """
@@ -52,7 +58,6 @@ def annual_pr(exp, strt_yr, end_yr):
 	
 	clim_annual_mean.to_netcdf(dest_fl)
 	print(dest_fl)
-
 
 if __name__=='__main__':
 
